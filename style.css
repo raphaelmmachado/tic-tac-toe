@@ -1,0 +1,18 @@
+*{
+
+}
+body{    
+    
+}
+.container{
+    margin: 0 auto;
+    width: 600px;
+    height: 600px;
+    display: grid; 
+    grid-template: repeat(3, 1fr) / repeat(3, 1fr);
+    
+}
+.square{
+    background-color: black;
+    color: white;
+}
