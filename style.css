@@ -22,6 +22,7 @@ body{
     
 }
 .square{
+    font-size: 3rem;
     display: grid;
     justify-items: center;
     align-items: center;
@@ -40,4 +41,10 @@ body{
 }
 .square:nth-child(7),:nth-child(8),:last-child{
     border-bottom: 0;
+}
+.square.x::after{
+    content: "X";
+}
+.square.o::after{
+    content: "O";
 }
