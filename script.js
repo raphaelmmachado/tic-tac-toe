@@ -17,8 +17,6 @@ const winningCondition = [
     [2, 4, 6]
 ];
 
-let gameOver = false;
-
 squares.forEach(square => {
     square.addEventListener("click", placeMark)
 });
@@ -65,5 +63,4 @@ function resetGame() {
     return squares.forEach(square => {
         square.removeEventListener("click", placeMark);
     });
-
 }
