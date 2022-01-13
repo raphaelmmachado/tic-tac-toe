@@ -54,12 +54,12 @@ function checkWin(winningCondition) {
                 board[pos0] === board[pos2]) {
                 
                 alert(`Symbol:  ${currentPlayer} Wins`);
-                return resetGame();
+                return stopGame();
             }
         }
     }
 }
-function resetGame() {
+function stopGame() {
     return squares.forEach(square => {
         square.removeEventListener("click", placeMark);
     });
