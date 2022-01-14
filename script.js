@@ -1,6 +1,6 @@
 const squares = document.querySelectorAll("[data-square]");
-const button = document.querySelector("[data-restart-button]")
-
+const button = document.querySelector("[data-restart-button]");
+let text = document.querySelector("[data-text]");
 
 let currentPlayer = "X"
 
@@ -72,7 +72,7 @@ function checkWin(winningCondition) {
             gameOver = true
             if (gameOver === true) {
                 setTimeout(() => {
-                    alert(`${currentPlayer} Wins!`)
+                  text.textContent = `${currentPlayer === "X" ? "Cross" : "Circle"} Wins!`
                 }, 10);
             }
         }
@@ -88,6 +88,7 @@ function restartGame() {
         square.classList.remove("clicked");
         square.textContent = ""
     });
+    text.textContent = "";
     gameOver = false;
     return checkWin(winningCondition);
 }

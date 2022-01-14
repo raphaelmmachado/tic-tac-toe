@@ -43,9 +43,16 @@ body{
     border-bottom: 0;
 }
 
-.restartBtn{
+.result{
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    justify-items: center;
+    align-items: center;
+
+}
+.winner-text{
+    font-size: 2em;
 }
 .clicked{
     cursor:not-allowed;
