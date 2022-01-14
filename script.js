@@ -1,4 +1,6 @@
 const squares = document.querySelectorAll("[data-square]");
+const button = document.querySelector("[data-restart-button]")
+
 
 let currentPlayer = "X"
 
@@ -17,19 +19,29 @@ const winningCondition = [
     [2, 4, 6]
 ];
 
-squares.forEach(square => {
-    square.addEventListener("click", placeMark)
-});
-squares.forEach(square => {
-    square.addEventListener("click", gamePlay)
-});
+let gameOver = false;
+
+if (gameOver === false) {
+    squares.forEach(square => {
+        square.addEventListener("click", placeMark)
+    });
+    squares.forEach(square => {
+        square.addEventListener("click", gamePlay)
+    });
+}
+
+button.onclick = () => restartGame();
 
 function placeMark(e) {
-    clickedSquare = e.target;
-    currentPlayer = currentPlayer === "X" ? "O" : "X";
-    if (clickedSquare.textContent === "") {
-
-        clickedSquare.textContent = currentPlayer
+    if (gameOver === false) {
+        clickedSquare = e.target;
+        currentPlayer = currentPlayer === "X" ? "O" : "X";
+        if (clickedSquare.textContent === "") {
+            clickedSquare.textContent = currentPlayer;
+            clickedSquare.classList.add("clicked");
+        } else if (clickedSquare.textContent !== "") {
+            return
+        }
     }
 }
 function gamePlay(e) {
@@ -41,26 +53,41 @@ function gamePlay(e) {
 }
 
 function checkWin(winningCondition) {
+    gameOver = false;
+
     for (let i = 0; i < winningCondition.length; i++) {
+
         let pos = winningCondition[i];
         let pos0 = pos[0];
         let pos1 = pos[1];
         let pos2 = pos[2];
+
+
         if (board[pos0] !== "" &&
             board[pos1] !== "" &&
-            board[pos2] !== "") {
+            board[pos2] !== "" &&
+            board[pos0] === board[pos1] &&
+            board[pos0] === board[pos2]) {
 
-            if (board[pos0] === board[pos1] &&
-                board[pos0] === board[pos2]) {
-                
-                alert(`Symbol:  ${currentPlayer} Wins`);
-                return stopGame();
+            gameOver = true
+            if (gameOver === true) {
+                setTimeout(() => {
+                    alert(`${currentPlayer} Wins!`)
+                }, 10);
             }
         }
     }
 }
-function stopGame() {
-    return squares.forEach(square => {
-        square.removeEventListener("click", placeMark);
+
+function restartGame() {
+    board = ["", "", "",
+        "", "", "",
+        "", "", ""];
+
+    squares.forEach(square => {
+        square.classList.remove("clicked");
+        square.textContent = ""
     });
+    gameOver = false;
+    return checkWin(winningCondition);
 }

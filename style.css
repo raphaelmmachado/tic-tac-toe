@@ -9,13 +9,13 @@
 body{    
         margin: 0;
 }
-.container{
+.board{
     
     width: 100vw;
-    height: 100vh;
+    height: 70vh;
     display: grid;
     justify-content: center;
-    
+    padding-bottom: 0px;
     align-items: center;
     align-content: center; 
     grid-template-columns: repeat(3, auto);
@@ -42,9 +42,11 @@ body{
 .square:nth-child(7),:nth-child(8),:last-child{
     border-bottom: 0;
 }
-.square.x::after{
-    content: "X";
+
+.restartBtn{
+    display: flex;
+    justify-content: center;
 }
-.square.o::after{
-    content: "O";
+.clicked{
+    cursor:not-allowed;
 }
