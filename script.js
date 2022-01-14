@@ -4,9 +4,11 @@ let text = document.querySelector("[data-text]");
 
 let currentPlayer = "X"
 
-let board = ["", "", "",
+/*let board = ["", "", "",
     "", "", "",
-    "", "", ""]
+    "", "", ""]*/
+
+let board = Array.from(squares);
 
 const winningCondition = [
     [0, 1, 2],
@@ -21,13 +23,17 @@ const winningCondition = [
 
 let gameOver = false;
 
+document.addEventListener("DOMContentLoaded", handleClick);
+
+function handleClick(){
 if (gameOver === false) {
     squares.forEach(square => {
-        square.addEventListener("click", placeMark)
+        square.addEventListener("click", placeMark, {once:true})
     });
     squares.forEach(square => {
-        square.addEventListener("click", gamePlay)
+        square.addEventListener("click", gamePlay, {once: true})
     });
+    }
 }
 
 button.onclick = () => restartGame();
@@ -35,21 +41,22 @@ button.onclick = () => restartGame();
 function placeMark(e) {
     if (gameOver === false) {
         clickedSquare = e.target;
+
         currentPlayer = currentPlayer === "X" ? "O" : "X";
         if (clickedSquare.textContent === "") {
             clickedSquare.textContent = currentPlayer;
             clickedSquare.classList.add("clicked");
-        } else if (clickedSquare.textContent !== "") {
-            return
         }
     }
 }
 function gamePlay(e) {
+     
     let position = e.target.id
-
-    board[position] = currentPlayer
+    
+    board[position] = currentPlayer;
 
     checkWin(winningCondition)
+    
 }
 
 function checkWin(winningCondition) {
@@ -58,24 +65,25 @@ function checkWin(winningCondition) {
     for (let i = 0; i < winningCondition.length; i++) {
 
         let pos = winningCondition[i];
-        let pos0 = pos[0];
-        let pos1 = pos[1];
-        let pos2 = pos[2];
+        let a = pos[0];
+        let b = pos[1];
+        let c = pos[2];
 
 
-        if (board[pos0] !== "" &&
-            board[pos1] !== "" &&
-            board[pos2] !== "" &&
-            board[pos0] === board[pos1] &&
-            board[pos0] === board[pos2]) {
+        if (board[a] !== "" &&
+            board[b] !== "" &&
+            board[c] !== "" &&
+            board[a] === board[b] &&
+            board[a] === board[c]) {
 
             gameOver = true
             if (gameOver === true) {
+                
                 setTimeout(() => {
-                  text.textContent = `${currentPlayer === "X" ? "Cross" : "Circle"} Wins!`
+                    text.textContent = `${currentPlayer === "X" ? "Cross" : "Circle"} Wins!`
                 }, 10);
-            }
-        }
+            } 
+        } 
     }
 }
 
@@ -88,7 +96,9 @@ function restartGame() {
         square.classList.remove("clicked");
         square.textContent = ""
     });
+   
     text.textContent = "";
     gameOver = false;
+    handleClick();
     return checkWin(winningCondition);
 }
