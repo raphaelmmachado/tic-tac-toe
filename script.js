@@ -4,11 +4,11 @@ let text = document.querySelector("[data-text]");
 
 let currentPlayer = "X"
 
-/*let board = ["", "", "",
+let board = ["", "", "",
     "", "", "",
-    "", "", ""]*/
+    "", "", ""]
 
-let board = Array.from(squares);
+// let board = Array.from(squares);
 
 const winningCondition = [
     [0, 1, 2],
@@ -25,14 +25,14 @@ let gameOver = false;
 
 document.addEventListener("DOMContentLoaded", handleClick);
 
-function handleClick(){
-if (gameOver === false) {
-    squares.forEach(square => {
-        square.addEventListener("click", placeMark, {once:true})
-    });
-    squares.forEach(square => {
-        square.addEventListener("click", gamePlay, {once: true})
-    });
+function handleClick() {
+    if (gameOver === false) {
+        squares.forEach(square => {
+            square.addEventListener("click", placeMark, { once: true })
+        });
+        squares.forEach(square => {
+            square.addEventListener("click", gamePlay, { once: true })
+        });
     }
 }
 
@@ -50,17 +50,23 @@ function placeMark(e) {
     }
 }
 function gamePlay(e) {
-     
+
     let position = e.target.id
-    
+
     board[position] = currentPlayer;
 
     checkWin(winningCondition)
-    
+
 }
+
 
 function checkWin(winningCondition) {
     gameOver = false;
+    
+    if (board.every(square => square !== "")){
+        text.textContent = "There is no winner. Play again"
+        gameOver = true
+    }
 
     for (let i = 0; i < winningCondition.length; i++) {
 
@@ -78,12 +84,12 @@ function checkWin(winningCondition) {
 
             gameOver = true
             if (gameOver === true) {
-                
+
                 setTimeout(() => {
                     text.textContent = `${currentPlayer === "X" ? "Cross" : "Circle"} Wins!`
                 }, 10);
-            } 
-        } 
+            }
+        }
     }
 }
 
@@ -96,7 +102,7 @@ function restartGame() {
         square.classList.remove("clicked");
         square.textContent = ""
     });
-   
+
     text.textContent = "";
     gameOver = false;
     handleClick();
