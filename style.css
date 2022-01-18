@@ -61,7 +61,18 @@ body{
 .clicked{
     cursor:not-allowed;
 }
+.restart-button{
+    border-radius: 2px;
+    border: rgb(218, 218, 218) solid 1px;
+    background-color: white;
+    color: rgb(39, 39, 39);
+    padding: 5px;
+   
+    
+}
 .restart-button:hover{
+    
     cursor: pointer;
     background-color: rgb(218, 218, 218);
+
 }
