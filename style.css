@@ -13,7 +13,7 @@ body{
 .board{
     
     width: 100vw;
-    height: 70vh;
+    height: 65vh;
     display: grid;
     justify-content: center;
     padding-bottom: 0px;
@@ -67,12 +67,19 @@ body{
     background-color: white;
     color: rgb(39, 39, 39);
     padding: 5px;
-   
-    
+        
 }
 .restart-button:hover{
     
     cursor: pointer;
     background-color: rgb(218, 218, 218);
 
+}
+.current-player-div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    font-size: 2em;
+    font-family: "Roboto", sans-serif;
 }

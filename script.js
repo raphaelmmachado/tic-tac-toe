@@ -1,4 +1,5 @@
 const squares = document.querySelectorAll("[data-square]");
+const playerText = document.querySelector("[data-current-player-text]")
 const button = document.querySelector("[data-restart-button]");
 let text = document.querySelector("[data-text]");
 
@@ -26,7 +27,12 @@ let gameOver = false;
 document.addEventListener("DOMContentLoaded", handleClick);
 
 function handleClick() {
+
+    
+
     if (gameOver === false) {
+        playerText.textContent = `It is ${currentPlayer === "X" ? "O" : "X"}'s turn.`
+
         squares.forEach(square => {
             square.addEventListener("click", placeMark, { once: true })
         });
@@ -43,6 +49,8 @@ function placeMark(e) {
         clickedSquare = e.target;
 
         currentPlayer = currentPlayer === "X" ? "O" : "X";
+        playerText.textContent = `It is ${currentPlayer === "X" ? "O" : "X"}'s turn.`;
+
         if (clickedSquare.textContent === "") {
             clickedSquare.textContent = currentPlayer;
             clickedSquare.classList.add("clicked");
@@ -62,8 +70,8 @@ function gamePlay(e) {
 
 function checkWin(winningCondition) {
     gameOver = false;
-    
-    if (board.every(square => square !== "")){
+
+    if (board.every(square => square !== "")) {
         text.textContent = "There is no winner. Play again"
         gameOver = true
     }
@@ -86,6 +94,7 @@ function checkWin(winningCondition) {
             if (gameOver === true) {
 
                 setTimeout(() => {
+                    playerText.textContent = ""
                     text.textContent = `${currentPlayer === "X" ? "Cross" : "Circle"} Wins!`
                 }, 10);
             }
