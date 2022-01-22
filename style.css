@@ -6,6 +6,7 @@
 
 *{
     box-sizing: border-box;
+    font-family: 'Red Hat Display', sans-serif;
 }
 body{    
         margin: 0;
@@ -25,7 +26,7 @@ body{
 .square{
     cursor: pointer;
     font-size: 3rem;
-    font-family: 'Red Hat Display', sans-serif;;
+    font-family: 'Red Hat Display', sans-serif;
     display: grid;
     justify-items: center;
     align-items: center;
@@ -56,7 +57,7 @@ body{
 }
 .winner-text{
     font-size: 2em;
-    font-family: 'Roboto', sans-serif;
+
 }
 .clicked{
     cursor:not-allowed;
@@ -81,5 +82,4 @@ body{
     justify-content: center;
     flex-direction: column;
     font-size: 2em;
-    font-family: "Roboto", sans-serif;
 }

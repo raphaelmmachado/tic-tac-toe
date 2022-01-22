@@ -31,7 +31,7 @@ function handleClick() {
     
 
     if (gameOver === false) {
-        playerText.textContent = `It is ${currentPlayer === "X" ? "O" : "X"}'s turn.`
+        playerText.textContent = `Player ${currentPlayer === "X" ? "O" : "X"} turn.`
 
         squares.forEach(square => {
             square.addEventListener("click", placeMark, { once: true })
@@ -49,7 +49,7 @@ function placeMark(e) {
         clickedSquare = e.target;
 
         currentPlayer = currentPlayer === "X" ? "O" : "X";
-        playerText.textContent = `It is ${currentPlayer === "X" ? "O" : "X"}'s turn.`;
+        playerText.textContent = `Player ${currentPlayer === "X" ? "O" : "X"} turn`;
 
         if (clickedSquare.textContent === "") {
             clickedSquare.textContent = currentPlayer;
@@ -72,7 +72,8 @@ function checkWin(winningCondition) {
     gameOver = false;
 
     if (board.every(square => square !== "")) {
-        text.textContent = "There is no winner. Play again"
+        playerText.textContent = "";
+        text.textContent = "There is no winner. Play again";
         gameOver = true
     }
 
@@ -95,7 +96,7 @@ function checkWin(winningCondition) {
 
                 setTimeout(() => {
                     playerText.textContent = ""
-                    text.textContent = `${currentPlayer === "X" ? "Cross" : "Circle"} Wins!`
+                    text.textContent = `${currentPlayer} Wins!`
                 }, 10);
             }
         }
