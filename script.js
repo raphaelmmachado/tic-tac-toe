@@ -32,7 +32,7 @@ function handleClick() {
     //if game is not over
     if (gameOver === false) {
         //text will show current player
-        text.textContent = `Player ${player === "X" ? "O" : "X"} turn.`
+        text.textContent = `Player  ${player === "X" ? "O" : "X"} turn.`
 
         /* if a square is clicked, it will execute a function.
          if it was already clicked will not execute*/
@@ -53,7 +53,7 @@ function placeMark(e) {
         clickedSquare = e.target;
 
         player = player === "X" ? "O" : "X";
-        text.textContent = `Player ${player  === "X" ? "O" : "X"} turn`;
+        text.textContent = `Player  ${player  === "X" ? "O" : "X"}  turn`;
 
         if (clickedSquare.textContent === "") {
             clickedSquare.textContent = player;
@@ -97,7 +97,7 @@ function checkWin(winningCondition) {
             if (gameOver === true) {
             // if the game is over, after a delay, show that current player won the game
                 setTimeout(() => {
-                    text.textContent = `${player} Wins!`
+                    text.textContent = `${player}  Wins!`
                 }, 10);
             }
         }
